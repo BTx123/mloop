@@ -2,17 +2,15 @@
 <html lang='en'>
 <head>
     <meta charset="UTF-8">
-    <link href="images/favicon.ico" rel="icon" type="image/png">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="assets/img/favicon.ico" rel="icon" type="image/png">
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css">
     <title>REPL▶Y!</title>
 </head>
 <body>
-    <div id="title"><img alt="Repl▶y!: Music On Loop" src="images/logo.png"></div>
+    <div id="title"><img alt="Repl▶y!: Music On Loop" src="assets/img/logo.png"></div>
     <div id="main">
         <div id="player">
-            <audio id="song" autoplay controls="" src="retrieveMusic.php">
-
-            </audio>
+            <audio autoplay="" controls="" id="song" src="retrieveMusic.php"></audio>
         </div>
         <div id="options">
             <h1>Options</h1>
@@ -30,50 +28,41 @@
                     </tr>
                     <tr>
                         <td>Snippet of the song (Optional):</td>
-                        <td>
-                            <input id="startMin" placeholder="min" type="text">&#58;<input id="startSec" placeholder="start sec" type="text">
-                        </td>
-                        <td>~
-                            <input id="endMin" placeholder="min" type="text">&#58;<input id="endSec" placeholder="sec" type="text">
-                        </td>
+                        <td><input id="startMin" placeholder="min" type="text">&#58;<input id="startSec" placeholder="start sec" type="text"></td>
+                        <td>~ <input id="endMin" placeholder="min" type="text">&#58;<input id="endSec" placeholder="sec" type="text"></td>
                     </tr>
                 </tbody>
-            </table><button class="buttonTransition" type="button" onclick="updateOptions();">Apply</button>
+            </table><button class="buttonTransition" onclick="updateOptions();" type="button">Apply</button>
         </div>
     </div>
     <div id="sidebar">
         <div id="songlist">
             <h1>List of Songs</h1>
             <form action="changeSongRank.php" enctype="multipart/form-data" method="post">
-                <select name="songsList" id="songsList">
+                <select id="songsList" name="songsList">
                     <?php
-    				$servername = "localhost";
-    				$username = "dan";
-    				$password = "hello";
-    				$dbname = "mlooper";
-    				$conn = new mysqli($servername, $username, $password, $dbname) or die("Connection failed: " . $conn->connect_error);
-    				$sql_query = mysqli_query($conn, "SELECT name FROM music ORDER BY listOrder DESC");
-    				while($row = $sql_query->fetch_assoc()){
-    				    echo "<option>" . $row['name'] . "</option>";
-    				}
-    				?>
-                </select>
-                <input class="buttonTransition" name="submitList" type="submit" value="Play">
+                    $servername = "localhost";
+                    $username   = "dan";
+                    $password   = "hello";
+                    $dbname     = "mlooper";
+                    $conn       = new mysqli($servername, $username, $password, $dbname) or die("Connection failed: " . $conn->connect_error);
+                    $sql_query  = mysqli_query($conn, "SELECT name FROM music ORDER BY listOrder DESC");
+                    while ($row = $sql_query->fetch_assoc()) {
+                        echo "<option>" . $row['name'] . "</option>";
+                    }
+                    ?>
+                </select> <input class="buttonTransition" name="submitList" type="submit" value="Play">
             </form>
         </div>
         <div id="upload">
             <h1>Upload</h1>
-            <uploadform><form action="upload.php" enctype="multipart/form-data" method="post">
-                <uploadfile>
-                    <input id="fileToUpload" accept=".mp3,.wav,.m4a,.aac"  name="fileToUpload" type="file">
-                    <input id="filename" name="displayName" placeholder="File Name" type="text">
-                    <input class="buttonTransition" name="submitUpload" type="submit" value="Submit">
-                </uploadfile>
-            </form></uploadform>
+            <form action="upload.php" enctype="multipart/form-data" method="post">
+                <input accept=".mp3,.wav,.m4a,.aac" id="fileToUpload" name="fileToUpload" type="file"> <input id="filename" name="displayName" placeholder="File Name" type="text"> <input class="buttonTransition" name="submitUpload" type="submit" value="Submit">
+            </form>
         </div>
-    </div>
-    <!--Extension check-->
-    <script src="jquery.js"></script>
+    </div><!--Extension check-->
+    <script src="assets/js/jquery.js">
+    </script>
     <script>
         $( "uploadfile" ).change(function() {
             var fileext = $("#fileToUpload").val().split('.').pop();
@@ -81,9 +70,10 @@
                 alert('invalid extension!');
                 $("#fileToUpload").val('')
         }});
+    </script> <!-- File and Filname Existence Validation -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
     </script>
-    <!-- File and Filname Existence Validation -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type='text/javascript'>
     $(document).ready(function() {
         //option A
@@ -98,8 +88,8 @@
         }
         });
     });
-    </script>
-    <!-- Audio Script -->
+    </script> <!-- Audio Script -->
+
     <script>
         myAudio=document.getElementById('song');
         // myAudio.addEventListener('canplaythrough', function() {
@@ -143,7 +133,7 @@
         }
     </script>
     <footer>
-        <a href="https://github.com/mrdanshih/mloop"><img alt="GitHub" src="images/octocat.png"></a>
+        <a href="https://github.com/BTx123/mloop"><img alt="GitHub" src="assets/img/octocat.png"></a>
     </footer>
 </body>
 </html>
