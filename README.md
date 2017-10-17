@@ -1,4 +1,4 @@
-# mloop
+# REPL▶Y!
 
 ## Overview
 REPLAY! is a Web app for sharing and looping music online, built from scratch using an Apache Server (XAAMP), MySQL, PHP, HTML/CSS, JavaScript/jQuery
