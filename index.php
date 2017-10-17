@@ -2,8 +2,9 @@
 <html lang='en'>
 <head>
     <meta charset="UTF-8">
-    <link href="assets/img/favicon.ico" rel="icon" type="image/png">
-    <link href="assets/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
     <title>REPL▶Y!</title>
 </head>
 <body>
@@ -57,83 +58,26 @@
         <div id="upload">
             <h1>Upload</h1>
             <form action="upload.php" enctype="multipart/form-data" method="post">
-                <input accept=".mp3,.wav,.m4a,.aac" id="fileToUpload" name="fileToUpload" type="file"> <input id="filename" name="displayName" placeholder="File Name" type="text"> <input class="buttonTransition" name="submitUpload" type="submit" value="Submit">
+                <input accept=".mp3,.wav,.m4a,.aac" id="fileToUpload" name="fileToUpload" type="file">
+                <input id="filename" name="displayName" placeholder="File Name" type="text">
+                <input class="buttonTransition" name="submitUpload" type="submit" value="Submit">
             </form>
         </div>
-    </div><!--Extension check-->
-    <script src="assets/js/jquery.js">
-    </script>
-    <script>
-        $( "uploadfile" ).change(function() {
-            var fileext = $("#fileToUpload").val().split('.').pop();
-            if($.inArray(fileext, ['wav','mp3','m4a','aac']) == -1) {
-                alert('invalid extension!');
-                $("#fileToUpload").val('')
-        }});
-    </script> <!-- File and Filname Existence Validation -->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
-    </script>
-    <script type='text/javascript'>
-    $(document).ready(function() {
-        //option A
-        $("uploadform").submit(function(e) {
-            if ($("#fileToUpload").val() == '') {
-                alert('Please select a file!');
-                e.preventDefault(e);
-        }
-        else if ($("#filename").val() == '') {
-            alert('Please enter a name for your file!');
-            e.preventDefault(e);
-        }
-        });
-    });
-    </script> <!-- Audio Script -->
-
-    <script>
-        myAudio=document.getElementById('song');
-        // myAudio.addEventListener('canplaythrough', function() {
-        //   if(this.currentTime < 100){this.currentTime = 100;}
-        //   this.play();
-        // });
-        var startTime = 0;
-        var endTime = 0;
-        var breakTime = 0;
-        var numLoops = 0;
-        var vid = document.getElementById("song");
-        var stop = false;
-        var count = 0;
-        var reset_interval = null;
-        function updateOptions() {
-            console.log("OK");
-            startTime = parseInt(document.getElementById("startMin").value)*60 + parseInt(document.getElementById("startSec").value);
-            endTime = parseInt(document.getElementById("endMin").value)*60 + parseInt(document.getElementById("endSec").value)+1;
-            breakTime = parseInt(document.getElementById("breakTime").value);
-            numLoops = parseInt(document.getElementById("loopCount").value);
-            count = numLoops;
-            loop();
-        }
-        function loop() {
-            if(count > 0){
-                vid.currentTime = startTime;
-                reset_interval = setInterval(pause, (endTime-startTime)*1000 );
-                vid.play();
-            }
-        }
-        function pause() {
-            vid.pause();
-            count--;
-            clearInterval(reset_interval);
-            window.setTimeout(loop,breakTime*1000);
-        }
-        function reset() {
-            vid.currentTime = startTime;
-            count--;
-            loop();
-        }
-    </script>
-    <footer>
+    </div>
+    <!-- <div>
         <a href="https://github.com/BTx123/mloop"><img alt="GitHub" src="assets/img/octocat.png"></a>
-    </footer>
+    </div> -->
+
+    <!-- <script src="assets/js/jquery.js" type="text/javascript"></script> -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous" type="text/javascript"></script>
+
+    <!-- main javascript for site -->
+    <script src="assets/js/main.min.js" type="text/javascript"></script>
+
 </body>
 </html>
