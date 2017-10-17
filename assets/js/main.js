@@ -2,7 +2,7 @@
 $("uploadfile").change(
     function() {
         var fileext = $("#fileToUpload").val().split('.').pop();
-        if($.inArray(fileext, ['wav','mp3','m4a','aac']) == -1) {
+        if ($.inArray(fileext, ['wav', 'mp3', 'm4a', 'aac']) == -1) {
             alert('Invalid Extension!');
             $("#fileToUpload").val('')
         }
@@ -26,6 +26,27 @@ $(document).ready(
     }
 );
 
+// File upload
+$(function() {
+    $(document).on('change', ':file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+    $(document).ready(function() {
+        $(':file').on('fileselect', function(event, numFiles, label) {
+            var input = $(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+        });
+    });
+});
+
 // Song looping logic
 myAudio = document.getElementById('song');
 
@@ -40,10 +61,10 @@ var reset_interval = null;
 
 function updateOptions() {
     startTime = parseInt(document.getElementById("startMin").value) * 60 + parseInt(document.getElementById("startSec").value);
-    endTime   = parseInt(document.getElementById("endMin").value) * 60 + parseInt(document.getElementById("endSec").value) + 1;
+    endTime = parseInt(document.getElementById("endMin").value) * 60 + parseInt(document.getElementById("endSec").value) + 1;
     breakTime = parseInt(document.getElementById("breakTime").value);
-    numLoops  = parseInt(document.getElementById("loopCount").value);
-    count     = numLoops;
+    numLoops = parseInt(document.getElementById("loopCount").value);
+    count = numLoops;
     loop();
 }
 

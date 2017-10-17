@@ -52,7 +52,8 @@
                         echo "<option>" . $row['name'] . "</option>";
                     }
                     ?>
-                </select> <input class="buttonTransition" name="submitList" type="submit" value="Play">
+                </select>
+                <input class="buttonTransition" name="submitList" type="submit" value="Play">
             </form>
         </div>
         <div id="upload">
